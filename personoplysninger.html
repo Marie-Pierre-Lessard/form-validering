@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" defer></script>
+    <title>Formvalidering</title>
+</head>
+<body>
+    <header class="hidden">
+        <p>Placeholder (header)</p>
+    </header>
+    <main class="wrapper">
+        <hgroup>
+            <h1>København-Toronto på tirsdag, den 8. april 2025 kl. 13:50</h1>
+            <p>Du er ved at booke et fly til Toronto, Canada, til 5 personer. Udfyld venligst alle obligatoriske felter, før du trykker på Næste.</p>
+        </hgroup>
+        <!-- role="form" = ARIA role -->
+        <!-- If the attribute novalidate is not present, the custom JS validation is not applied.
+        "This form uses the novalidate attribute to turn off the browser's automatic validation. Setting the novalidate attribute on the form stops the form from showing its own error message bubbles, and allows us to instead display the custom error messages in the DOM in some manner of our own choosing." https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation -->
+        <form action="tak.html" role="form" id="reservationForm" class="reservationsblanket" novalidate>
+
+            <input type="hidden" id="kundenr" name="kundenr" value="4489">
+            <fieldset class="fieldsets">
+                <legend><h3>Kontaktperson</h3></legend>
+                <h4>Personlige oplysninger</h4>
+                <label for="firstNameKontakt">Fornavn<span class="red-text">*</span>:</label>
+                <!-- The name="" attribute is necessary, otherwise the data provided is not transmitted when user clicks Submit. It must be used by the database that receives the data. -->
+                <!-- I read that the length of fields should be limited in order to stop attackers from entering malicious code, e.g. Javascript. -->
+                <input type="text" name="fornavn-kontakt" id="firstNameKontakt" minlength="2" maxlength="50" class="alphanumerical-input minLengthTwo" placeholder="Fornavn" required><span></span><br>
+                <label for="lastNameKontakt">Efternavn<span class="red-text">*</span>:</label>
+                <input type="text" name="efternavn-kontakt" id="lastNameKontakt" minlength="2" maxlength="50" class="alphanumerical-input minLengthTwo" placeholder="Efternavn" required><span></span><br>
+                <label for="telKontakt">Telefonnummer<span class="red-text">*</span>:</label>
+                <input type="tel" name="tel-kontakt" id="telKontakt" maxlength="30" class="alphanumerical-input valid-entry-req" placeholder="Telefonnummer" required><span></span><br>
+                <label for="emailKontakt">E-mail<span class="red-text">*</span>:</label>
+                <input type="email" name="email-kontakt" id="emailKontakt" class="alphanumerical-input valid-entry-req emailInputs" placeholder="Mailadresse" required><span></span><br>
+                <h5>Adresse</h5>
+                <label for="gadeNr">Gade og nr., evt. etage og dør<span class="red-text">*</span>:</label>
+                <input type="text" name="gade-kontakt" id="gadeNr" minlength="5" maxlength="50" class="alphanumerical-input minLengthFive" placeholder="Gade og nr." required><span></span><br>
+                <label for="postnummerDk">Dansk postnummer<span class="red-text">*</span>:</label>
+                <input type="number" name="postnummer-kontakt" id="postnummerDk" min="1000" max="9999" class="alphanumerical-input LengthFour" placeholder="Postnummer i DK" required><span></span><br>
+                <label for="byNavn">By<span class="red-text">*</span>:</label>
+                <input type="text" name="by-kontakt" id="byNavn" maxlength="50" class="alphanumerical-input valid-entry-req" placeholder="By" required><span></span><br>
+                <h5><u>Bemærk venligst, at kontaktpersonen skal være myndig.</u> Kontaktpersonen er ansvarlig for reservationen.</h5>
+                <label for="birthdayKontakt">Fødselsdato<span class="red-text">*</span>:</label>
+                <input type="date" name="foedselsdato-kontakt" id="birthdayKontakt" max="2007-04-05" class="alphanumerical-input valid-entry-req" placeholder="Fødselsdato" required><span></span><br>
+                <h5>Pas</h5>
+                <label for="pasnrKontakt">Pasnummer<span class="red-text">*</span>:</label>
+                <input type="text" name="pasnr-kontakt" id="pasnrKontakt" maxlength="9" class="alphanumerical-input maxLengthNine" placeholder="Pasnummer" required><span></span><br>
+                <label for="landKontakt">Statsborgerskab<span class="red-text">*</span>:</label>
+                <select id="landKontakt" name="land-kontakt">
+                    <option value="Canada">Canada</option>
+                    <option value="Danmark" selected>Danmark</option>
+                    <option value="Norge">Norge</option>
+                    <option value="Sverige">Sverige</option>
+                </select>
+                <h4>Andre oplysninger</h4>
+                <p>Hvis du tager med på rejsen, vælg venligst en måltid.</p>
+                <input type="radio" id="kyllingKontakt" name="meal-kontakt" value="Kylling0">
+                <label for="kyllingKontakt">Kyllingeret</label>
+                <input type="radio" id="svinKontakt" name="meal-kontakt" value="Svin0">
+                <label for="svinKontakt">Svineret</label>
+                <input type="radio" id="vegetariskKontakt" name="meal-kontakt" value="Vegetarisk0">
+                <label for="vegetariskKontakt">Vegetarisk ret</label>
+            </fieldset>
+            <fieldset class="fieldsets">
+                <legend><h3>Passager 1</h3></legend>
+                <h4>Personlige oplysninger</h4>
+                <h5><u>Kun udfyld disse felter, hvis kontaktpersonen <span class="red-text">ikke</span> er iblandt de rejsende.</u></h5>
+                <label for="firstNamePassager1">Fornavn:</label>
+                <input type="text" name="fornavn-passager-1" id="firstNamePassager1" maxlength="50" class="alphanumerical-input" placeholder="Fornavn"><span></span><br>
+                <label for="lastNamePassager1">Efternavn:</label>
+                <input type="text" name="efternavn-passager-1" id="lastNamePassager1" maxlength="50" class="alphanumerical-input" placeholder="Efternavn"><span></span><br>
+                <label for="pasnrPassager1">Pasnummer:</label>
+                <input type="text" name="pasnr-passager-1" id="pasnrPassager1" maxlength="9" class="alphanumerical-input" placeholder="Pasnummer"><br>
+                <label for="landPassager1">Statsborgerskab:</label>
+                <select id="landPassager1" name="land-passager-1">
+                    <option value="Canada">Canada</option>
+                    <option value="Danmark" selected>Danmark</option>
+                    <option value="Norge">Norge</option>
+                    <option value="Sverige">Sverige</option>
+                </select>
+                <h4>Andre oplysninger</h4>
+                <p>Vælg venligst en måltid for denne passager.</p>
+                <input type="radio" id="kyllingPassager1" name="meal-passager-1" value="Kylling1">
+                <label for="kyllingPassager1">Kyllingeret</label>
+                <input type="radio" id="svinPassager1" name="meal-passager-1" value="Svin1">
+                <label for="svinPassager1">Svineret</label>
+                <input type="radio" id="vegetariskPassager1" name="meal-passager-1" value="Vegetarisk1">
+                <label for="vegetariskPassager1">Vegetarisk ret</label>
+            </fieldset>
+            
+            <div class="centered-buttons">
+                <input type="submit" id="submitButton" value="Næste">
+                <input type="reset" id="resetButton" value="Nulstil"> 
+            </div>
+
+            <!-- Alternative if I want to style the button more than what can easily be done with input elements: 
+            <button type="reset">Nulstil</button> 
+            <button type="submit">Send</button>
+            -->
+
+            <div id="errorMessageDiv"></div>
+    </form>
+    </main>
+    <footer class="hidden">
+        <h6>Placeholder (footer)</h6>
+        <p>Placeholder-tekst</p>
+        <p>Placeholder-tekst</p>
+        <p><small>© Copyright 2025 Marie-Pierre Lessard.</small></p>
+    </footer>
+</body>
+</html>

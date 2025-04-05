@@ -1,0 +1,99 @@
+html {
+    font-family: 'Noto Serif', 'Times New Roman', Times, serif;
+    letter-spacing: 0.4px;
+    background: linear-gradient(to top, #72d8fa, rgba(0, 0, 255, 0.3));
+    /* If min-height is not set, the linear gradient does not fill the whole screen of the Thank You page, which is very short. */
+    min-height: 100%;
+}
+
+.hidden {
+    color: transparent;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+hgroup h1,
+hgroup p {
+    justify-self: center;
+}  
+
+/* display: inline-block; makes the border of the fieldset fit the content instead of creating a box as wide as the page. However, I deleted that property because it prevented the centering of the form. */
+form {
+    justify-self: center;
+}
+
+.centered-buttons {
+    justify-self: center;
+}
+
+.centered-buttons input {
+    margin-inline: 3.5rem;
+    margin-block: 1.5rem;
+    padding-inline: 1.5rem;
+    padding-block: .5rem;
+    border: 5px rgb(234, 231, 231) outset;
+}
+
+.fieldsets {
+    padding-inline: 2rem;
+    padding-bottom: 3.5rem;
+    margin-block: 2rem;
+    /* The three pixel measurements are respectively: the right-hand shadow, the bottom shadow, and the apparent elevation of the object above the shadow. */
+    box-shadow: rgb(66, 66, 66) 4px 4px 10px;
+    background-color: white;
+}
+
+legend {
+    border: none;
+    padding-inline: 5rem;
+    background-color: white;
+    box-shadow: rgb(66, 66, 66) 4px 4px 10px;
+}
+
+.alphanumerical-input {
+    min-width: 30ch;
+}
+
+.red-text {
+    color: red;
+}
+
+/* .5px is about the standard width of the border in Chrome. Thicker is better to really show that the info entered isn't matching the criteria. 
+2px isn't very thick, just more visible. */
+input:invalid {
+    border: 2px dashed red;
+}
+
+.minLengthTwo:invalid + span::after {
+    content: "Mindst 2 tegn påkrævet";
+    color: red;
+    padding-inline: 5px;
+}
+
+.minLengthFive:invalid + span::after {
+    content: "Mindst 5 tegn påkrævet";
+    color: red;
+    padding-inline: 5px;
+}
+
+.LengthFour:invalid + span::after {
+    content: "4 tegn påkrævet";
+    color: red;
+    padding-inline: 5px;
+}
+
+.maxLengthNine:invalid + span::after {
+    content: "Maks. 9 tegn";
+    color: red;
+    padding-inline: 5px;
+}
+
+.valid-entry-req:invalid + span::after {
+    content: "Gyldigt svar påkrævet";
+    color: red;
+    padding-inline: 5px;
+}
+
